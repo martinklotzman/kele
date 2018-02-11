@@ -43,4 +43,13 @@ include Roadmap
     response = self.class.post('https://www.bloc.io/api/v1/messages', body: { "sender": sender, "recipient_id": recipient_id, "token": token, "subject": subject, "stripped_text": stripped_text }, headers: { "authorization": @auth_token })
     JSON.parse(response.body)
   end
+
+  def create_submission(assignment_branch, assignment_commit_link, checkpoint_id, comment, enrollment_id)
+    response = self.class.post('https://www.bloc.io/api/v1/checkpoint_submissions', body: { "assignment_branch": assignment_branch, "assignment_commit_link": assignment_commit_link, "checkpoint_id": checkpoint_id, "comment": comment, "enrollment_id": enrollment_id }, headers: { "authorization": @auth_token })
+    if response.success?
+      puts "You have made a new submission."
+    else
+      puts "Something went wrong, please try again."
+    end
+  end
 end
