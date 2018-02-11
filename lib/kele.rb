@@ -23,8 +23,8 @@ include HTTParty
     @user_data = JSON.parse(response.body)
   end
 
-  def get_mentor_availability(mentor_id)
-    @mentor_id = mentor_id
+  def get_mentor_availability
+    @mentor_id = 2400043
     response = self.class.get('https://www.bloc.io/api/v1/mentors/2400043/student_availability', headers: { "authorization": @auth_token })
     @mentor_availability = JSON.parse(response.body)
   end
